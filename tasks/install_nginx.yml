@@ -1,0 +1,28 @@
+# ./ansible-nginx/tasks/install_nginx.yml
+ 
+- name: NGINX | Installing NGINX
+  apt:
+    pkg: nginx
+    state: latest
+  become: true
+ 
+- name: NGINX | Starting NGINX
+  service:
+    name: nginx
+    state: started
+  become: true
+
+- name: Creates directory
+  file: path=/var/target state=directory owner=yamo
+  become: true
+
+- name: NGINX | copy content
+  synchronize: src=~/Projects/blog/target/ dest=/var/target
+
+- name: NGINX | copy vhost conf
+  copy: src=templates/blog dest=/etc/nginx/sites-available/
+  become: true
+
+- name: NGINX | link vhost conf
+  file: src=/etc/nginx/sites-available/blog dest=/etc/nginx/sites-enabled/blog state=link
+  become: true
