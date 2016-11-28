@@ -20,9 +20,12 @@
   synchronize: src=~/Projects/blog/target/ dest=/var/target
 
 - name: NGINX | copy vhost conf
-  copy: src=templates/blog dest=/etc/nginx/sites-available/
+  copy: src=nginx/templates/blog dest=/etc/nginx/sites-available/
   become: true
+  notify: 
+  - Reload Nginx
 
 - name: NGINX | link vhost conf
   file: src=/etc/nginx/sites-available/blog dest=/etc/nginx/sites-enabled/blog state=link
   become: true
+

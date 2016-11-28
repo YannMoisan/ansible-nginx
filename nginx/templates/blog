@@ -1,13 +1,11 @@
 server {
 	listen   80;
-	server_name  _;
 
-	access_log  /var/log/nginx/blog.log;
+	access_log  /var/log/nginx/blog.log3;
 	root   /var/target;
 	index  index.html;
 
 	location / {
-		try_files $uri $uri/ ;
 	}
 
 }
