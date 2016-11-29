@@ -3,4 +3,7 @@
 
 - hosts: nginx
   roles:
+    - fail2ban
+    - ufw
+    - weechat
     - nginx

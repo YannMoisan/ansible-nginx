@@ -1,0 +1,6 @@
+- name: Install weechat
+  apt: name=weechat-curses state=installed
+  become: true
+
+- name: Copy partial config
+  copy: src=irc.conf dest=~/.weechat/irc.conf
